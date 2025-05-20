@@ -19,7 +19,7 @@ export function useStageGetContactInfo() {
   // Conditionally add additional instructions for the agent's prompt.
   useCopilotAdditionalInstructions(
     {
-      instructions: "CURRENT STATE: You are now getting the contact information of the user.",
+      instructions: "ESTADO ACTUAL: Estas recopilando la información de contacto del usuario.",
       available: stage === "getContactInfo" ? "enabled" : "disabled",
     },
     [stage],
@@ -29,7 +29,7 @@ export function useStageGetContactInfo() {
   useCopilotAction(
     {
       name: "getContactInformation",
-      description: "Get the contact information of the user",
+      description: "Recoge la información de contacto del usuario.",
       available: stage === "getContactInfo" ? "enabled" : "disabled",
       renderAndWaitForResponse: ({ status, respond }) => {
         return (
@@ -40,7 +40,7 @@ export function useStageGetContactInfo() {
               setContactInfo({ name, email, phone });
 
               // Let the agent know that the user has submitted their contact information.
-              respond?.("User has submitted their contact information.");
+              respond?.("El usuario ha mandado su información de contacto.");
 
               // This move the state machine to the next stage, chooseHousekeeper deterministically.
               setStage("chooseHousekeeper");

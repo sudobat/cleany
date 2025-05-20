@@ -28,7 +28,7 @@ export function UserMessage({ message, rawData }: UserMessageProps) {
 
       {/* Message */}
       <div className="relative py-2 px-4 rounded-2xl rounded-tr-sm max-w-[80%] text-sm leading-relaxed bg-white border border-neutral-200 shadow-sm">
-        <div className="font-medium text-blue-600 mb-1">You</div>
+        <div className="font-medium text-blue-600 mb-1">Tú</div>
         {message}
       </div>
     </div>

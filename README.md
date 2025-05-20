@@ -1,11 +1,11 @@
 # State Machine Copilot
 
-Transform complex conversational flows into manageable state machines. This AI-powered car sales application demonstrates how to build sophisticated multi-stage interactions with contextual awareness and state transitions.
+Transform complex conversational flows into manageable state machines. This AI-powered housekeeping sales application demonstrates how to build sophisticated multi-stage interactions with contextual awareness and state transitions.
 
 [Click here for a running example](https://state-machine-copilot.vercel.app/)
 
 <div align="center">
-  <img src="./assets/preview.png" alt="State Machine Copilot for Car Sales"/>
+  <img src="./assets/preview.png" alt="State Machine Copilot for Housekeeping Sales"/>
 
   <a href="https://copilotkit.ai" target="_blank">
     <img src="https://img.shields.io/badge/Built%20with-CopilotKit-6963ff" alt="Built with CopilotKit"/>
@@ -23,7 +23,7 @@ Transform complex conversational flows into manageable state machines. This AI-p
 This application simulates a car dealership experience where an AI assistant guides users through a multi-stage process:
 
 1. **Contact Information** - Collecting customer details
-2. **Car Selection** - Helping users build their dream car
+2. **Housekeeper Selection** - Helping users choose their housekeeper
 3. **Financing Options** - Offering payment alternatives
 4. **Payment Processing** - Handling financing or direct payment
 5. **Order Confirmation** - Finalizing the purchase

@@ -9,8 +9,8 @@ import {
 
 /**
   useStageBuildCar is a hook that will add this stage to the state machine. It is responsible for:
-  - Helping the user select a car.
-  - Storing the selected car in the global state.
+  - Helping the user select a housekeeper.
+  - Storing the selected housekeeper in the global state.
   - Moving to the next stage, sellFinancing.
 */
 export function useStageChooseHousekeeper() {
@@ -20,7 +20,8 @@ export function useStageChooseHousekeeper() {
   useCopilotAdditionalInstructions(
     {
       instructions:
-        "CURRENT STATE: You are now helping the user select a housekeeper. TO START, say 'Thank you for that information! Do you have any preference for your housekeeper that we should take into account?'. If you have a housekeeper in mind, give a reason why you recommend it and then call the 'showHousekeeper' action with the housekeeper you have in mind or show multiple housekeepers with the 'showMultipleHousekeepers' action. Never list the housekeepers you have in mind, just show them. Do ",
+        // "CURRENT STATE: You are now helping the user select a housekeeper. TO START, say 'Thank you for that information! Do you have any preference for your housekeeper that we should take into account?'. If you have a housekeeper in mind, give a reason why you recommend it and then call the 'showHousekeeper' action with the housekeeper you have in mind or show multiple housekeepers with the 'showMultipleHousekeepers' action. Never list the housekeepers you have in mind, just show them. Do ",
+        "ESTADO ACTUAL: Ahora estás ayudando al usuario a seleccionar a una persona para limpiar su hogar. PARA EMPEZAR, di '¡Gracias por tu información! ¿Tienes alguna preferencia para la persona que vendrá a limpiar tu hogar?'. Si tienes a una persona limpiadora en mente, da una razón por la que la recomiendas y luego llama a la action 'showHousekeeper' con la persona limpiadora que tienes en mente, o muestra múltiples personas limpiadoras con la action 'showMultipleHousekeepers'. Nunca listes los limpiadores que tienes en mente, solo muéstralos.",
       available: stage === "chooseHousekeeper" ? "enabled" : "disabled",
     },
     [stage],
@@ -29,25 +30,25 @@ export function useStageChooseHousekeeper() {
   // Conditionally add additional readable information for the agent's prompt.
   useCopilotReadable(
     {
-      description: "Housekeeper Inventory",
+      description: "Lista de personas limpiadoras.",
       value: housekeepers,
       available: stage === "chooseHousekeeper" ? "enabled" : "disabled",
     },
     [stage],
   );
 
-  // Conditionally add an action to show a single car.
+  // Conditionally add an action to show a single housekeeper.
   useCopilotAction(
     {
       name: "showHousekeeper",
       description:
-        "Show a single housekeeper that you have in mind. Do not call this more than once, call `showMultipleHousekeepers` if you have multiple housekeepers to show.",
+        "Muestra una sola persona limpiadora que tienes en mente. No llames esta action más de una vez, llama la action `showMultipleHousekeepers` si tienes más de una persona limpiadora que mostrar.",
       available: stage === "chooseHousekeeper" ? "enabled" : "disabled",
       parameters: [
         {
           name: "housekeeper",
           type: "object",
-          description: "The housekeeper to show",
+          description: "La persona limpiadora a mostrar.",
           required: true,
           attributes: [
             { name: "id", type: "number" },
@@ -75,20 +76,21 @@ export function useStageChooseHousekeeper() {
             housekeeper={(housekeeper as Housekeeper) || ({} as Housekeeper)}
             status={status}
             onSelect={() => {
-              // Store the selected car in the global state.
+              // Store the selected housekeeper in the global state.
               setSelectedHousekeeper((housekeeper as Housekeeper) || ({} as Housekeeper));
 
-              // Let the agent know that the user has selected a car.
+              // Let the agent know that the user has selected a housekeeper.
               respond?.(
-                "User has selected a housekeeper, you can see it in your readables, the system will now move to the next state, do not call nextState.",
+                // "User has selected a housekeeper, you can see it in your readables, the system will now move to the next state, do not call nextState.",
+                "El usuario ha seleccionado a una persona limpiadora, la puedes ver en tus readables, el sistema se va a mover al siguiente paso, no llames nextState.",
               );
 
               // Move to the next stage, sellFinancing.
-              setStage("sellFinancing");
+              setStage("getPaymentInfo");
             }}
             onReject={() =>
               respond?.(
-                "User wants to select a different housekeeper, please stay in this state and help them select a different housekeeper",
+                "El usuario quiere seleccionar una persona limpiadora distinta, sigue en este paso y ayúda al usuario a seleccionar a una persona limpiadora distinta.",
               )
             }
           />
@@ -103,7 +105,8 @@ export function useStageChooseHousekeeper() {
     {
       name: "showMultipleHousekeepers",
       description:
-        "Show a list of housekeepers based on the user's query. Do not call this more than once. Call `showHousekeeper` if you only have a single housekeeper to show.",
+      // "Show a list of housekeepers based on the user's query. Do not call this more than once. Call `showHousekeeper` if you only have a single housekeeper to show.",
+        "Muestra una lista de personas limpiadoras basada en la petición del usuario. No llames a este método más de una vez. Llama a la action `showHousekeeper` si solo tienes una persona limpiadora a mostrar.",
       parameters: [
         {
           name: "housekeepers",
@@ -139,11 +142,11 @@ export function useStageChooseHousekeeper() {
 
               // Let the agent know that the user has selected a housekeeper.
               respond?.(
-                "User has selected a housekeeper you can see it in your readables, you are now moving to the next state",
+                "El usuario ha seleccionado a una persona limpiadora, puedes verlo en tus readables, ahora nos movemos al siguiente paso.",
               );
 
               // Move to the next stage, sellFinancing.
-              setStage("sellFinancing");
+              setStage("getPaymentInfo");
             }}
           />
         );

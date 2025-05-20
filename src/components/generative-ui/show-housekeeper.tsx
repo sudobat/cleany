@@ -78,11 +78,11 @@ export function ShowHousekeeper({ housekeeper, onSelect, onReject, status, class
           <div className="flex gap-3">
             {onReject && (
               <button className={rejectButtonStyles} onClick={onReject}>
-                Other options
+                Otras opciones
               </button>
             )}
             <button className={acceptButtonStyles} onClick={onSelect}>
-              Select
+              Seleccionar
             </button>
           </div>
         </div>

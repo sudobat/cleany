@@ -27,8 +27,8 @@ export const availableCardInfo: CardInfo[] = [
     type: "Visa",
   },
   {
-    name: "Jane Doe",
-    email: "jane.doe@example.com",
+    name: "Mary Jane",
+    email: "mary.jane@example.com",
     phone: "0987654321",
     address: "456 Main St, Anytown, USA",
     city: "Anytown",
@@ -50,6 +50,6 @@ export const availableCardInfo: CardInfo[] = [
     cardNumber: "1234-5678-9012-3456",
     cardExpiration: "12/24",
     cardCvv: "123",
-    type: "Visa",
+    type: "Visa Electron",
   },
 ];

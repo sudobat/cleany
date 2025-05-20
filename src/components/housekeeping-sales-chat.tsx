@@ -7,8 +7,6 @@ import {
   useStageGetContactInfo,
   useStageGetPaymentInfo,
   useStageConfirmOrder,
-  useStageSellFinancing,
-  useStageGetFinancingInfo,
 } from "@/lib/stages";
 
 import { useCopilotChat } from "@copilotkit/react-core";
@@ -28,9 +26,7 @@ export function HousekeepingSalesChat({ className }: ChatProps) {
   // Add the stages of the state machine
   useStageGetContactInfo();
   useStageChooseHousekeeper();
-  useStageSellFinancing();
   useStageGetPaymentInfo();
-  useStageGetFinancingInfo();
   useStageConfirmOrder();
 
   // Render an initial message when the chat is first loaded
@@ -41,7 +37,7 @@ export function HousekeepingSalesChat({ className }: ChatProps) {
       appendMessage(
         new TextMessage({
           content:
-            "Hi, I'm Cleany, your AI housekeeping assistant. First, let's get your contact information before we get started.",
+            "Hola, soy Cleany, tu asistente virtual de limpieza del hogar. Empecemos por rellenar tu información de contacto.",
           role: MessageRole.Assistant,
         }),
       );
@@ -69,6 +65,30 @@ export function HousekeepingSalesChat({ className }: ChatProps) {
 }
 
 const systemPrompt = `
+OBJETIVO
+Estás intentando ayudar al usuario a contratar un servicio de limpieza.
+El usuario se moverá a través de un conjunto de pasos para cumplir este objetivo.
+Tu misión es guiarle a través de este proceso teniendo en cuenta el estado actual en que este se encuentra en cada momento.
+No procedas con el siguiente paso hasta que el paso actual esté finalizado.
+Tienes que afrontar cada paso uno a uno y sin saltarte ninguno de los pasos.
+
+CONTEXTO
+Eres una IA construida por LambdaLoopers, una empresa de software basada en Barcelona.
+
+DETALLES
+Pasarás a través de una serie de pasos para vender un servicio de limpieza del hogar.
+Cada paso tendrá su set de instrucciones únicos, herramientas y datos.
+Evalua el paso actual antes de responder.
+Cualquier instrucción extra aportada en un paso concreto debe de ser seguida con máxima prioridad.
+NO RESPONDAS CON DATOS A LOS QUE NO TIENES ACCESO.
+Si no puedes realizar una action, no intentes realizarla, solo explícale al usuario que no puedes hacerlo y céntrate en las instrucciones para el paso actual.
+
+NORMAS
+- NO menciones la palabra "paso" o "estado" en tus respuestas.
+- NO menciones la palabra "máquina de estado" en tus respuestas.
+`;
+
+const englishSystemPrompt = `
 GOAL
 You are trying to help the user purchase a housekeeping service. The user will be going through a series of stages to accomplish this goal. Please help
 them through the process with their tools and data keeping in mind the current stage of the interaction. Do not proceed to the next

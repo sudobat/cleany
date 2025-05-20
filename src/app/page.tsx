@@ -13,12 +13,12 @@ export default function Home() {
   const tabs = [
     {
       id: "orders",
-      label: "Orders",
+      label: "Pedidos",
       content: <OrderCards orders={orders} />,
     },
     {
       id: "visualizer",
-      label: "State Visualizer",
+      label: "Ver Estado",
       content: <StateVisualizer />,
     },
   ];

@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatedCard } from "@/components/animated-card";
 import { useGlobalState } from "@/lib/stages";
-import { Housekeeper, CardInfo, ContactInfo, FinancingInfo, Order } from "@/lib/types";
+import { Housekeeper, CardInfo, ContactInfo, Order } from "@/lib/types";
 
 import { RenderFunctionStatus } from "@copilotkit/react-core";
 
@@ -12,40 +12,35 @@ interface ConfirmOrderProps {
 }
 
 export const ConfirmOrder = ({ onConfirm, onCancel, status }: ConfirmOrderProps) => {
-  const { selectedHousekeeper, contactInfo, cardInfo, financingInfo } = useGlobalState();
+  const { selectedHousekeeper, contactInfo, cardInfo } = useGlobalState();
 
   return (
     <AnimatedCard className="w-[500px]" status={status}>
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Order Summary</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">Resumen del Pedido</h2>
 
       <div className="space-y-3">
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
-          <span className="font-medium">Vehicle</span>
+          <span className="font-medium">Limpiador/a</span>
           <span className="text-gray-600">
             {selectedHousekeeper?.name} ({selectedHousekeeper?.gender}) {selectedHousekeeper?.stars_over_five}/5
           </span>
         </div>
 
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
-          <span className="font-medium">Price</span>
+          <span className="font-medium">Precio</span>
           <span className="text-gray-600">${selectedHousekeeper?.hourly_price?.toLocaleString()}/h</span>
         </div>
 
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
-          <span className="font-medium">Customer</span>
+          <span className="font-medium">Cliente</span>
           <span className="text-gray-600">{contactInfo?.name}</span>
         </div>
 
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
-          <span className="font-medium">Payment</span>
+          <span className="font-medium">Tarjeta</span>
           <span className="text-gray-600">
             {cardInfo?.type} ****{cardInfo?.cardNumber?.slice(-4)}
           </span>
-        </div>
-
-        <div className="flex justify-between items-center">
-          <span className="font-medium">Financing</span>
-          <span className="text-gray-600">{financingInfo?.loanTerm} months</span>
         </div>
       </div>
 
@@ -56,8 +51,7 @@ export const ConfirmOrder = ({ onConfirm, onCancel, status }: ConfirmOrderProps)
               housekeeper: selectedHousekeeper || ({} as Housekeeper),
               contactInfo: contactInfo || ({} as ContactInfo),
               cardInfo: cardInfo || ({} as CardInfo),
-              financingInfo: financingInfo || ({} as FinancingInfo),
-              paymentType: cardInfo ? "card" : "financing",
+              paymentType: "tarjeta",
             })
           }
           onCancel={onCancel}
@@ -79,13 +73,13 @@ const ActionButtons = ({
       onClick={onCancel}
       className="px-6 py-2.5 w-full text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors duration-200 font-medium"
     >
-      Cancel
+      Cancelar
     </button>
     <button
       onClick={onConfirm}
       className="px-6 py-2.5 w-full text-white bg-pink-600 rounded-lg hover:bg-pink-800 transition-colors duration-200 font-medium"
     >
-      Confirm Order
+      Confirmar Pedido
     </button>
   </div>
 );

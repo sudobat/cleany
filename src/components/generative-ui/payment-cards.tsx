@@ -33,7 +33,7 @@ export function PaymentCards({ onSubmit }: PaymentCardsProps) {
 
   return (
     <div className="w-full">
-      {!selectedCard && <h1 className="text-2xl font-bold mb-2">Your payment methods</h1>}
+      {!selectedCard && <h1 className="text-2xl font-bold mb-2">Tus métodos de pago</h1>}
       <div className="flex flex-row overflow-x-auto gap-4 py-4 w-full min-w-0 pb-6">
         {availableCardInfo
           .filter((cardInfo) => selectedCard === null || selectedCard === cardInfo.name)
@@ -83,11 +83,11 @@ const CreditCard = ({
         {/* Card Footer */}
         <div className="flex justify-between items-end mt-8">
           <div>
-            <div className="text-xs opacity-80">VALID THRU</div>
+            <div className="text-xs opacity-80">Expiración</div>
             <div>{cardInfo.cardExpiration}</div>
           </div>
           <div className="text-right">
-            <div className="text-xs opacity-80">TYPE</div>
+            <div className="text-xs opacity-80">Tipo</div>
             <div>{cardInfo.type}</div>
           </div>
         </div>

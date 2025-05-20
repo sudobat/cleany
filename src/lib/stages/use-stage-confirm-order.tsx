@@ -17,7 +17,8 @@ export function useStageConfirmOrder() {
   useCopilotAdditionalInstructions(
     {
       instructions:
-        "CURRENT STATE: You are now confirming the order of the user. Say, 'Great! Now let's just confirm your order. Here is the summary of your order. ' and then call the 'confirmOrder' action. Always call the 'confirmOrder' tool, never ask the user for anything.",
+        // "CURRENT STATE: You are now confirming the order of the user. Say, 'Great! Now let's just confirm your order. Here is the summary of your order. ' and then call the 'confirmOrder' action. Always call the 'confirmOrder' tool, never ask the user for anything.",
+        "ESTADO ACTUAL: Estás confirmando el pedido del usuario. Di, '¡Genial! Solo queda confirmar el pedido.' y SIEMPRE llama a la action 'confirmOrder', nunca pidas información al usuario.",
       available: stage === "confirmOrder" ? "enabled" : "disabled",
     },
     [stage],
@@ -27,7 +28,7 @@ export function useStageConfirmOrder() {
   useCopilotAction(
     {
       name: "nextState",
-      description: "Proceed to next state",
+      description: "Avanza al siguiente paso.",
       available: stage === "confirmOrder" ? "enabled" : "disabled",
       handler: async () => setStage("getContactInfo"),
     },
@@ -38,7 +39,7 @@ export function useStageConfirmOrder() {
   useCopilotAction(
     {
       name: "confirmOrder",
-      description: "Confirm the order of the user",
+      description: "Confirma el pedido del usuario.",
       available: stage === "confirmOrder" ? "enabled" : "disabled",
       renderAndWaitForResponse: ({ status, respond }) => {
         return (
@@ -50,13 +51,13 @@ export function useStageConfirmOrder() {
 
               // Let the agent know that the user has confirmed their order.
               respond?.(
-                "User confirmed their order, please ask them if they would like to place a another order and if they do, call the 'nextState' action.",
+                "El usuario ha confirmado su pedido, pregúntale si quieren realizar otro pedido, y si quieren, LLAMA la action 'nextState'.",
               );
             }}
             onCancel={() => {
               // Let the agent know that the user has cancelled their order.
               respond?.(
-                "User cancelled their order, please ask them if they'd like to start over with a new order or if they'd like to continue with their current order. If they'd like to start over, call the 'nextState' action. If they'd like to continue with their current order, call the 'confirmOrder' action.",
+                "El usuario ha cancelado su pedido, pregúntale si quieren empezar de nuevo con un nuevo pedido o si quieren continuar con el pedido actual. Si quieren empezar de nuevo con un nuevo pedido, LLAMA la action 'nextState'. Si quieren continuar con el pedido actual, LLAMA la action 'confirmOrder'.",
               );
             }}
           />

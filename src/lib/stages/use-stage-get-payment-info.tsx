@@ -21,7 +21,7 @@ export function useStageGetPaymentInfo() {
   useCopilotAdditionalInstructions(
     {
       instructions:
-        "CURRENT STATE: You are now getting the payment information of the user. Say, 'Great! Now I need to get your payment information.' and MAKE SURE to then call the 'getPaymentInformation' action.",
+        "ESTADO ACTUAL: Estás obteniendo la información de pago del usuario. Di, '¡Genial! Ahora necesito tu información de pago.' y LLAMA a la action 'getPaymentInformation'.",
       available: stage === "getPaymentInfo" ? "enabled" : "disabled",
     },
     [stage],
@@ -31,7 +31,7 @@ export function useStageGetPaymentInfo() {
   useCopilotAction(
     {
       name: "getPaymentInformation",
-      description: "Get the payment information of the user",
+      description: "Obtiene la información de pago del usuario.",
       available: stage === "getPaymentInfo" ? "enabled" : "disabled",
       renderAndWaitForResponse: ({ respond }) => {
         return (
@@ -42,7 +42,7 @@ export function useStageGetPaymentInfo() {
 
               // Let the agent know that the user has submitted their payment information.
               respond?.(
-                "User has submitted their payment information, you are now moving to the next state",
+                "El usuario ha enviado su información de pago, nos movemos al siguiente paso.",
               );
 
               // Move to the next stage, confirmOrder.

@@ -25,10 +25,9 @@ export function ContactInfo({ onSubmit, status }: ContactInfoProps) {
 
   return (
     <AnimatedCard status={status}>
-      <h1 className="text-2xl text-center font-semibold antialiased">Contact Information</h1>
+      <h1 className="text-2xl text-center font-semibold antialiased">Información de Contacto</h1>
       <h2 className="text-center text-base text-gray-400 antialiased">
-        We need this information in order to process your order and contact you if there are any
-        issues.
+        Necesitamos esta información para poder procesar tu pedido y contactarte si hay algún problema.
       </h2>
       <hr className="border-pink-300 mt-4 mb-4" />
 
@@ -47,7 +46,7 @@ export function ContactInfo({ onSubmit, status }: ContactInfoProps) {
             exit={{ opacity: 0, scale: 0, height: 0, margin: 0, padding: 0 }}
             transition={{ duration: 0.3 }}
           >
-            Submit
+            Enviar
           </motion.button>
         )}
       </AnimatePresence>

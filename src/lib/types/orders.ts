@@ -1,11 +1,10 @@
-import { Housekeeper, ContactInfo, CardInfo, FinancingInfo, housekeepers, availableCardInfo } from "@/lib/types";
+import { Housekeeper, ContactInfo, CardInfo, housekeepers, availableCardInfo } from "@/lib/types";
 
 export type Order = {
   housekeeper: Housekeeper;
   contactInfo: ContactInfo;
   cardInfo?: CardInfo;
-  financingInfo?: FinancingInfo;
-  paymentType: "card" | "financing";
+  paymentType: "tarjeta";
 };
 
 export const defaultOrders: Order[] = [
@@ -17,6 +16,6 @@ export const defaultOrders: Order[] = [
       phone: "1234567890",
     },
     cardInfo: availableCardInfo[0],
-    paymentType: "card",
+    paymentType: "tarjeta",
   },
 ];
