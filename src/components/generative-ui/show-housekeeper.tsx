@@ -7,36 +7,22 @@ import Image from "next/image";
 
 import { RenderFunctionStatus } from "@copilotkit/react-core";
 
-interface ShowCarProps {
-  car: Housekeeper;
+interface ShowHousekeeperProps {
+  housekeeper: Housekeeper;
   onSelect: () => void;
   onReject?: () => void;
   status: RenderFunctionStatus;
   className?: string;
 }
 
-const ColorDisplay = ({ color }: { color?: string }) => {
-  if (!color) return null;
-
-  return (
-    <span className="flex items-center gap-2">
-      <span
-        className="w-5 h-5 rounded-full border border-gray-200 shadow-sm"
-        style={{ backgroundColor: color }}
-      />
-      <span className="text-gray-600 text-sm">{color}</span>
-    </span>
-  );
-};
-
-const CarImage = ({ car }: { car: Housekeeper }) => {
+const HousekeeperImage = ({ housekeeper }: { housekeeper: Housekeeper }) => {
   return (
     <div className="relative aspect-[3/3] w-full overflow-hidden h-[250px]">
       <Image
         width={300}
         height={250}
-        src={car?.image?.src || ""}
-        alt={car?.image?.alt || ""}
+        src={housekeeper?.image?.src || ""}
+        alt={housekeeper?.image?.alt || ""}
         className="object-cover w-full h-full hover:scale-105 transition-transform duration-300 transform-gpu"
         style={{
           imageRendering: "auto",
@@ -47,13 +33,13 @@ const CarImage = ({ car }: { car: Housekeeper }) => {
   );
 };
 
-export function ShowCar({ car, onSelect, onReject, status, className }: ShowCarProps) {
-  const carDetails = [
-    { label: "Make", value: car.make },
-    { label: "Model", value: car.model },
-    { label: "Year", value: car.year },
-    { label: "Color", value: <ColorDisplay color={car.color} /> },
-    { label: "Price", value: `$${car.price?.toLocaleString()}`, bold: true },
+export function ShowHousekeeper({ housekeeper, onSelect, onReject, status, className }: ShowHousekeeperProps) {
+  const housekeeperDetails = [
+    { label: "Name", value: housekeeper.name },
+    { label: "Age", value: housekeeper.age },
+    { label: "Gender", value: housekeeper.gender },
+    { label: "Review", value: housekeeper.stars_over_five },
+    { label: "Hourly price", value: `$${housekeeper.hourly_price?.toLocaleString()}`, bold: true },
   ];
 
   const cardStyles = cn(
@@ -70,14 +56,14 @@ export function ShowCar({ car, onSelect, onReject, status, className }: ShowCarP
 
   return (
     <AnimatedCard status={status} className={cardStyles}>
-      <CarImage car={car} />
+      <HousekeeperImage housekeeper={housekeeper} />
 
       <div className={informationWrapperStyles}>
         <div className="space-y-2 px-6">
           <div className="text-2xl font-semibold text-gray-900">
-            {car.year} {car.make} {car.model}
+            {housekeeper.name} ({housekeeper.gender}) {housekeeper.stars_over_five}/5
           </div>
-          {carDetails.map(({ label, value, bold }) => (
+          {housekeeperDetails.map(({ label, value, bold }) => (
             <div key={label} className="flex justify-between items-center py-1">
               <span className="text-gray-500 text-sm">{label}</span>
               <span className={cn("text-gray-900", bold ? "font-semibold text-lg" : "text-sm")}>
@@ -105,25 +91,25 @@ export function ShowCar({ car, onSelect, onReject, status, className }: ShowCarP
   );
 }
 
-interface ShowCarsProps {
-  cars: Housekeeper[];
-  onSelect: (car: Housekeeper) => void;
+interface ShowHousekeepersProps {
+  housekeepers: Housekeeper[];
+  onSelect: (housekeeper: Housekeeper) => void;
   status: RenderFunctionStatus;
 }
 
-export function ShowCars({ cars, onSelect, status }: ShowCarsProps) {
-  const [selectedCar, setSelectedCar] = useState<Housekeeper | null>(null);
+export function ShowHousekeepers({ housekeepers, onSelect, status }: ShowHousekeepersProps) {
+  const [selectedHousekeeper, setSelectedHousekeeper] = useState<Housekeeper | null>(null);
 
-  const handleSelect = (car: Housekeeper) => {
-    setSelectedCar(car);
-    onSelect(car);
+  const handleSelect = (housekeeper: Housekeeper) => {
+    setSelectedHousekeeper(housekeeper);
+    onSelect(housekeeper);
   };
 
   return (
     <div className="flex flex-row overflow-x-auto gap-4 py-4 space-x-6">
-      {cars.map((car, index) => {
-        // Don't render if there's a selected car and this isn't it
-        if (selectedCar && car !== selectedCar) return null;
+      {housekeepers.map((housekeeper: Housekeeper, index: number) => {
+        // Don't render if there's a selected housekeeper and this isn't it
+        if (selectedHousekeeper && housekeeper !== selectedHousekeeper) return null;
 
         return (
           <motion.div
@@ -132,7 +118,7 @@ export function ShowCars({ cars, onSelect, status }: ShowCarsProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
           >
-            <ShowCar car={car} onSelect={() => handleSelect(car)} status={status} />
+            <ShowHousekeeper housekeeper={housekeeper} onSelect={() => handleSelect(housekeeper)} status={status} />
           </motion.div>
         );
       })}

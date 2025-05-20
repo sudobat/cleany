@@ -20,10 +20,10 @@ export function StateVisualizer() {
         targetPosition: Position.Top,
       },
       {
-        id: "buildCar",
-        data: { label: "Build Car" },
+        id: "chooseHousekeeper",
+        data: { label: "Choose Housekeeper" },
         position: { x: 250, y: 100 },
-        className: stage === "buildCar" ? activeNodeStyles : inactiveNodeStyles,
+        className: stage === "chooseHousekeeper" ? activeNodeStyles : inactiveNodeStyles,
         sourcePosition: Position.Bottom,
         targetPosition: Position.Top,
       },
@@ -67,18 +67,18 @@ export function StateVisualizer() {
 
   const edges: Edge[] = [
     {
-      id: "getContactInfo-buildCar",
+      id: "getContactInfo-chooseHousekeeper",
       source: "getContactInfo",
-      target: "buildCar",
+      target: "chooseHousekeeper",
       markerEnd: { type: MarkerType.Arrow },
       className: stage === "getContactInfo" ? activeEdgeStyles : inactiveEdgeStyles,
     },
     {
-      id: "buildCar-sellFinancing",
-      source: "buildCar",
+      id: "chooseHousekeeper-sellFinancing",
+      source: "chooseHousekeeper",
       target: "sellFinancing",
       markerEnd: { type: MarkerType.Arrow },
-      className: stage === "buildCar" ? activeEdgeStyles : inactiveEdgeStyles,
+      className: stage === "chooseHousekeeper" ? activeEdgeStyles : inactiveEdgeStyles,
     },
     {
       id: "sellFinancing-getPaymentInfo",

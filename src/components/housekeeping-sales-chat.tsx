@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils/cn";
 import {
-  useStageBuildCar,
+  useStageChooseHousekeeper,
   useStageGetContactInfo,
   useStageGetPaymentInfo,
   useStageConfirmOrder,
@@ -27,7 +27,7 @@ export function HousekeepingSalesChat({ className }: ChatProps) {
 
   // Add the stages of the state machine
   useStageGetContactInfo();
-  useStageBuildCar();
+  useStageChooseHousekeeper();
   useStageSellFinancing();
   useStageGetPaymentInfo();
   useStageGetFinancingInfo();
@@ -41,7 +41,7 @@ export function HousekeepingSalesChat({ className }: ChatProps) {
       appendMessage(
         new TextMessage({
           content:
-            "Hi, I'm Fio, your AI car salesman. First, let's get your contact information before we get started.",
+            "Hi, I'm Cleany, your AI housekeeping assistant. First, let's get your contact information before we get started.",
           role: MessageRole.Assistant,
         }),
       );

@@ -42,8 +42,8 @@ export function useStageGetContactInfo() {
               // Let the agent know that the user has submitted their contact information.
               respond?.("User has submitted their contact information.");
 
-              // This move the state machine to the next stage, buildCar deterministically.
-              setStage("buildCar");
+              // This move the state machine to the next stage, chooseHousekeeper deterministically.
+              setStage("chooseHousekeeper");
             }}
           />
         );

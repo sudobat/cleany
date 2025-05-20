@@ -97,7 +97,7 @@ This demo uses several key CopilotKit features to implement a state machine patt
 The application is structured around 6 distinct stages, each with its own hook in the `stages` directory:
 
 1. [getContactInfo](./src/lib/stages/use-stage-get-contact-info.tsx) - Collecting customer information
-2. [buildCar](./src/lib/stages/use-stage-build-car.tsx) - Configuring car options
+2. [buildCar](src/lib/stages/use-stage-choose-housekeeper.tsx) - Configuring car options
 3. [sellFinancing](./src/lib/stages/use-stage-sell-financing.tsx) - Presenting financing options
 4. [getFinancingInfo](./src/lib/stages/use-stage-get-financing-info.tsx) - Collecting financing details
 5. [getPaymentInfo](./src/lib/stages/use-stage-get-payment-info.tsx) - Processing payment information

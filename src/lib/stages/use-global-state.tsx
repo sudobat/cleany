@@ -4,7 +4,7 @@ import { Housekeeper, ContactInfo, CardInfo, Order, defaultOrders, FinancingInfo
 import { useCopilotReadable } from "@copilotkit/react-core";
 
 export type Stage =
-  | "buildCar"
+  | "chooseHousekeeper"
   | "getContactInfo"
   | "sellFinancing"
   | "getFinancingInfo"
@@ -14,8 +14,8 @@ export type Stage =
 interface GlobalState {
   stage: Stage;
   setStage: React.Dispatch<React.SetStateAction<Stage>>;
-  selectedCar: Housekeeper | null;
-  setSelectedCar: React.Dispatch<React.SetStateAction<Housekeeper | null>>;
+  selectedHousekeeper: Housekeeper | null;
+  setSelectedHousekeeper: React.Dispatch<React.SetStateAction<Housekeeper | null>>;
   contactInfo: ContactInfo | null;
   setContactInfo: React.Dispatch<React.SetStateAction<ContactInfo | null>>;
   cardInfo: CardInfo | null;
@@ -48,7 +48,7 @@ export function useGlobalState() {
 
 export function GlobalStateProvider({ children }: { children: ReactNode }) {
   const [stage, setStage] = useState<Stage>("getContactInfo");
-  const [selectedCar, setSelectedCar] = useState<Housekeeper | null>(null);
+  const [selectedHousekeeper, setSelectedHousekeeper] = useState<Housekeeper | null>(null);
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
   const [cardInfo, setCardInfo] = useState<CardInfo | null>(null);
   const [orders, setOrders] = useState<Order[]>(defaultOrders);
@@ -58,7 +58,7 @@ export function GlobalStateProvider({ children }: { children: ReactNode }) {
     description: "Currently Specified Information",
     value: {
       contactInfo,
-      selectedCar,
+      selectedHousekeeper,
       cardInfo,
       financingInfo,
       orders,
@@ -71,8 +71,8 @@ export function GlobalStateProvider({ children }: { children: ReactNode }) {
       value={{
         stage,
         setStage,
-        selectedCar,
-        setSelectedCar,
+        selectedHousekeeper,
+        setSelectedHousekeeper,
         contactInfo,
         setContactInfo,
         cardInfo,

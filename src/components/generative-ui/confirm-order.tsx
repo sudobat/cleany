@@ -12,7 +12,7 @@ interface ConfirmOrderProps {
 }
 
 export const ConfirmOrder = ({ onConfirm, onCancel, status }: ConfirmOrderProps) => {
-  const { selectedCar, contactInfo, cardInfo, financingInfo } = useGlobalState();
+  const { selectedHousekeeper, contactInfo, cardInfo, financingInfo } = useGlobalState();
 
   return (
     <AnimatedCard className="w-[500px]" status={status}>
@@ -22,13 +22,13 @@ export const ConfirmOrder = ({ onConfirm, onCancel, status }: ConfirmOrderProps)
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
           <span className="font-medium">Vehicle</span>
           <span className="text-gray-600">
-            {selectedCar?.year} {selectedCar?.make} {selectedCar?.model}
+            {selectedHousekeeper?.name} ({selectedHousekeeper?.gender}) {selectedHousekeeper?.stars_over_five}/5
           </span>
         </div>
 
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
           <span className="font-medium">Price</span>
-          <span className="text-gray-600">${selectedCar?.price?.toLocaleString()}</span>
+          <span className="text-gray-600">${selectedHousekeeper?.hourly_price?.toLocaleString()}/h</span>
         </div>
 
         <div className="flex justify-between items-center border-b border-blue-100 pb-2">
@@ -53,7 +53,7 @@ export const ConfirmOrder = ({ onConfirm, onCancel, status }: ConfirmOrderProps)
         <ActionButtons
           onConfirm={() =>
             onConfirm({
-              housekeeper: selectedCar || ({} as Housekeeper),
+              housekeeper: selectedHousekeeper || ({} as Housekeeper),
               contactInfo: contactInfo || ({} as ContactInfo),
               cardInfo: cardInfo || ({} as CardInfo),
               financingInfo: financingInfo || ({} as FinancingInfo),

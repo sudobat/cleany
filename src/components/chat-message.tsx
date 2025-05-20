@@ -65,7 +65,7 @@ export function AssistantMessage({ message, subComponent, isLoading }: Assistant
       {/* Message */}
       {(message || isLoading) && (
         <div className="relative py-2 px-4 rounded-2xl rounded-tl-sm max-w-[80%] text-sm leading-relaxed bg-white border border-neutral-200 shadow-sm">
-          <div className="font-medium text-pink-600 mb-1">Fio</div>
+          <div className="font-medium text-pink-600 mb-1">Cleany</div>
           {isLoading ? (
             <div className="flex items-center gap-2 p-1">
               <div className="w-2 h-2 bg-pink-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>

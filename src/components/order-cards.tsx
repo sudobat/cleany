@@ -33,7 +33,7 @@ export function OrderCard({ order, index }: { order: Order; index: number }) {
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="font-medium text-neutral-900 mb-1">
-                {order.housekeeper.year} {order.housekeeper.make} {order.housekeeper.model}
+                {order.housekeeper.name} ({order.housekeeper.gender}) {order.housekeeper.stars_over_five}/5
               </h3>
               <div className="text-sm text-neutral-500 flex items-center">
                 <svg
@@ -54,7 +54,7 @@ export function OrderCard({ order, index }: { order: Order; index: number }) {
             </div>
             <div className="text-right shrink-0">
               <div className="text-lg font-medium text-neutral-900 mb-1">
-                ${order.housekeeper.price?.toLocaleString()}
+                ${order.housekeeper.hourly_price?.toLocaleString()}/h
               </div>
               {order.paymentType === "card" ? (
                 <div className="text-sm text-neutral-500 flex items-center justify-end">
@@ -121,9 +121,9 @@ export function OrderCards({ orders }: OrderCardsProps) {
             FIO
           </div>
         </div>
-        <h3 className="text-neutral-900 font-medium mb-1">No Vehicle Orders Yet</h3>
+        <h3 className="text-neutral-900 font-medium mb-1">No Housekeeper Orders Yet</h3>
         <p className="text-neutral-500 text-sm text-center max-w-[240px] mb-4">
-          Ready to find your perfect vehicle? Start a conversation with Fio, your personal sales
+          Ready to find your perfect vehicle? Start a conversation with Cleany, your personal housekeeping
           assistant.
         </p>
         <button

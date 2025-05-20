@@ -1,10 +1,10 @@
 export type Housekeeper = {
   id?: number;
-  make?: string;
-  model?: string;
-  year?: number;
-  color?: string;
-  price?: number;
+  name?: string;
+  age?: number;
+  gender?: "male" | "female";
+  stars_over_five?: number;
+  hourly_price?: number;
   image?: {
     src: string;
     alt: string;
@@ -15,91 +15,91 @@ export type Housekeeper = {
 export const housekeepers: Housekeeper[] = [
   {
     id: 1,
-    make: "Hyundai",
-    model: "Kona",
-    year: 2025,
-    color: "Green",
-    price: 25000,
+    name: "Antonio",
+    age: 29,
+    gender: "male",
+    stars_over_five: 4.5,
+    hourly_price: 23.5,
     image: {
-      src: "/images/hyundai-kona.jpg",
+      src: "/images/male_1.png",
       alt: "Hyundai Kona",
       author: "Hyundai Motor Group",
     },
   },
   {
     id: 2,
-    make: "Kia",
-    model: "Tasman",
-    year: 2025,
-    color: "Green",
-    price: 20000,
+    name: "Alicia",
+    age: 40,
+    gender: "female",
+    stars_over_five: 4,
+    hourly_price: 12,
     image: {
-      src: "/images/kia-tasman.jpg",
+      src: "/images/female_1.png",
       alt: "Kia Tasman",
       author: "Hyundai Motor Group",
     },
   },
   {
     id: 3,
-    make: "Kia",
-    model: "EV6",
-    year: 2025,
-    color: "Gray",
-    price: 22000,
+    name: "Julia",
+    age: 32,
+    gender: "female",
+    stars_over_five: 5,
+    hourly_price: 11,
     image: {
-      src: "/images/kia-ev6.jpg",
+      src: "/images/female_2.png",
       alt: "Kia EV6",
       author: "Hyundai Motor Group",
     },
   },
   {
     id: 4,
-    make: "Kia",
-    model: "EV9",
-    year: 2025,
-    color: "Blue",
-    price: 18000,
+    name: "Francisca",
+    age: 50,
+    gender: "female",
+    stars_over_five: 2.7,
+    hourly_price: 18.5,
     image: {
-      src: "/images/kia-ev9.jpg",
+      src: "/images/female_3.png",
       alt: "Kia EV9",
       author: "Hyundai Motor Group",
     },
   },
   {
     id: 5,
-    make: "Hyundai",
-    model: "Santa Fe",
-    year: 2025,
-    color: "Green",
-    price: 15000,
+    name: "Jesús",
+    age: 47,
+    gender: "male",
+    stars_over_five: 3,
+    hourly_price: 15,
     image: {
-      src: "/images/hyundai-santa-fe.jpg",
+      src: "/images/male_2.png",
       alt: "Hyundai Santa Fe",
       author: "Hyundai Motor Group",
     },
   },
   {
     id: 6,
-    make: "Hyundai",
-    model: "Santa Fe",
-    year: 2025,
-    color: "Brown",
-    price: 27000,
+    name: "Byron",
+    age: 17,
+    gender: "male",
+    stars_over_five: 3.5,
+    hourly_price: 17,
     image: {
-      src: "/images/hyundai-santa-fe-brown.jpg",
+      src: "/images/male_3.png",
       alt: "Hyundai Santa Fe",
       author: "Hyundai Motor Group",
     },
   },
   {
     id: 7,
-    make: "Hyundai",
-    model: "Santa Fe",
-    year: 2025,
-    color: "Orange",
-    price: 25000,
+    name: "René",
+    age: 24,
+    gender: "female",
+    stars_over_five: 4.1,
+    hourly_price: 25,
     image: {
-      src: "/images/hyundai-santa-fe-orange.jpg",
+      src: "/images/female_4.png",
       alt: "Hyundai Santa Fe",
       author: "Hyundai Motor Group",
     },
